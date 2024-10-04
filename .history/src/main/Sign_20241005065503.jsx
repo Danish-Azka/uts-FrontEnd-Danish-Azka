@@ -16,7 +16,7 @@ function Sign() {
         e.preventDefault();
         postAdmin(data)
             .then(res => {
-                window.location.href = '/pts-rentCarKuu/';
+                window.location.href = '/pts-';
             })
             .catch(error => {
                 console.error('Error:', error); // Handle errors
