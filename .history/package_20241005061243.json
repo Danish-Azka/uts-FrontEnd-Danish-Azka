@@ -1,7 +1,7 @@
 {
   "name": "pts-sewamobil",
   "version": "0.1.0",
-  "homepage": "https://Danish-Azka.github.io/pts-rentCarKuu",
+  "homepage": "https://Danish-Azka.github.io/pts-ren",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
