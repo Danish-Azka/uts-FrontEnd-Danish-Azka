@@ -14,9 +14,10 @@ import AdminProf from './component/AdminProf';
 const App = () => {
   return (
 
+    <BrowserRouter basename='/rentCarKuu/'>
     <div>
-    <BrowserRouter basename='/rentACar/'>
-
+      
+    </div>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/client" element={<Client />} />
@@ -29,7 +30,6 @@ const App = () => {
         <Route path="/profil" element={<AdminProf />} />
       </Routes>
     </BrowserRouter>
-    </div>
   );
 };
 

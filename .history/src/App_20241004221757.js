@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter , Routes, Route } from 'react-router-dom';
+import { BrowserRouter  Router, Routes, Route } from 'react-router-dom';
 import Side from './component/Side';
 import Display from './main/Display';
 import Client from './main/Client';
@@ -14,8 +14,7 @@ import AdminProf from './component/AdminProf';
 const App = () => {
   return (
 
-    <div>
-    <BrowserRouter basename='/rentACar/'>
+    <BrowserRouter basename='/bootstrap5/'>
 
       <Routes>
         <Route path="/" element={<Login />} />
@@ -28,8 +27,8 @@ const App = () => {
         <Route path="/sign" element={<Sign />} />
         <Route path="/profil" element={<AdminProf />} />
       </Routes>
+    </Router>
     </BrowserRouter>
-    </div>
   );
 };
 

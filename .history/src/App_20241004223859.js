@@ -14,8 +14,8 @@ import AdminProf from './component/AdminProf';
 const App = () => {
   return (
 
+    <BrowserRouter basename='/rentCarKuu/'>
     <div>
-    <BrowserRouter basename='/rentACar/'>
 
       <Routes>
         <Route path="/" element={<Login />} />
