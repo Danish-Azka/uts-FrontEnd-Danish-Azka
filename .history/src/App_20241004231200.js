@@ -15,7 +15,7 @@ const App = () => {
   return (
 
     <div>
-    <BrowserRouter basename="/WebPts/">
+    <BrowserRouter basename="/webPts/">
 
       <Routes>
         <Route path="/" element={<Login />} />
