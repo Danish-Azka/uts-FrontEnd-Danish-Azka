@@ -10,7 +10,9 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
   const getUsers = async () => {
     try {
       const response = await axios.get('http://localhost:3009/admin/get'); 
@@ -32,7 +34,7 @@ const Login = () => {
       let user = users.find(user => input.value === user.email && input2.value === user.password);
 
       if (user) {
-        navigate('/display'); 
+        handleNavigation('/display'); 
         localStorage.setItem('nama', user.nama);
         localStorage.setItem('email', user.email);
         localStorage.setItem('pp', user.photo);

@@ -11,16 +11,13 @@ function Sign() {
         photo:""
     });
 
-    const navigate = useNavigate();
-    const handleNavigation = (path) => {
-        navigate(path);
-      }; 
+    const navigate = useNavigate(); 
 
     function submit(e) {
         e.preventDefault();
         postAdmin(data)
             .then(res => {
-                handleNavigation('/'); // Ganti window.location.href menjadi navigate
+                navigate('/pts-rentCarKuu/login'); // Ganti window.location.href menjadi navigate
             })
             .catch(error => {
                 console.error('Error:', error); // Handle errors
