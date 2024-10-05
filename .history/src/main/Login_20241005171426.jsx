@@ -8,7 +8,7 @@ const Login = () => {
   const [salah, setsalah] = useState('');
   const [warn, setwarn] = useState(false);
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Gunakan useNavigate untuk navigasi
 
   const getUsers = async () => {
     try {
