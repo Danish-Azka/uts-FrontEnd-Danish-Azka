@@ -20,7 +20,7 @@ function Sign() {
         e.preventDefault();
         postAdmin(data)
             .then(res => {
-                handleNavigation('/pts-rentCarKuu/'); // Ganti window.location.href menjadi navigate
+                handleNavigation('/pts/'); // Ganti window.location.href menjadi navigate
             })
             .catch(error => {
                 console.error('Error:', error); // Handle errors
