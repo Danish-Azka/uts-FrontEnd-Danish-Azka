@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Tambahkan useNavigate
+import { Link } from 'react-router-dom';
 import { postAdmin } from '../service/apiadmin';
 import { IoBus, IoCar, IoCarSport, IoLogoInstagram } from 'react-icons/io5';
+
 
 function Sign() {
     const [data, setData] = useState({
@@ -11,13 +12,11 @@ function Sign() {
         photo:""
     });
 
-    const navigate = useNavigate(); // Gunakan useNavigate untuk navigasi
-
     function submit(e) {
         e.preventDefault();
         postAdmin(data)
             .then(res => {
-                navigate('/login'); // Ganti window.location.href menjadi navigate
+                window.location.href = '/login';
             })
             .catch(error => {
                 console.error('Error:', error); // Handle errors
@@ -84,7 +83,7 @@ function Sign() {
                     </button>
                 </form>
                 <p className="text-center mt-6">
-                    <Link to="/login" className="text-blue-500 hover:underline">
+                    <Link to="/" className="text-blue-500 hover:underline">
                         Already Have an Account? <span className="font-semibold">Sign In</span>
                     </Link>
                 </p>

@@ -84,7 +84,7 @@ function Sign() {
                     </button>
                 </form>
                 <p className="text-center mt-6">
-                    <Link to="/login" className="text-blue-500 hover:underline">
+                    <Link to="/" className="text-blue-500 hover:underline">
                         Already Have an Account? <span className="font-semibold">Sign In</span>
                     </Link>
                 </p>

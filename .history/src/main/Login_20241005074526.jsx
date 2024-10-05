@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { IoBus, IoCar, IoCarSport, IoLogoInstagram } from 'react-icons/io5';
-import { Link, useNavigate } from 'react-router-dom'; // Tambahkan useNavigate
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+import axios from 'axios'; // Import Axios
 
 const Login = () => {
   const [alertShow, setAlertShow] = useState(false);
   const [salah, setsalah] = useState('');
   const [warn, setwarn] = useState(false);
 
-  const navigate = useNavigate(); // Gunakan useNavigate untuk navigasi
-
+  
   const getUsers = async () => {
     try {
       const response = await axios.get('http://localhost:3009/admin/get'); 
@@ -31,10 +30,10 @@ const Login = () => {
       let user = users.find(user => input.value === user.email && input2.value === user.password);
 
       if (user) {
-        navigate('/display'); // Ganti window.location.href menjadi navigate
-        localStorage.setItem('nama', user.nama);
-        localStorage.setItem('email', user.email);
-        localStorage.setItem('pp', user.photo);
+        window.location.href = '/display';
+          localStorage.setItem('nama', user.nama);
+          localStorage.setItem('email', user.email);
+          localStorage.setItem('pp', user.photo);
       } else {
         setAlertShow(true);
         setsalah('border-red-500');
