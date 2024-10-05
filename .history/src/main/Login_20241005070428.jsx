@@ -30,7 +30,7 @@ const Login = () => {
       let user = users.find(user => input.value === user.email && input2.value === user.password);
 
       if (user) {
-        window.location.href = '/pts-rentCarKuu/display';
+        window.location.href = '/pts-rentCarKuu//display';
           localStorage.setItem('nama', user.nama);
           localStorage.setItem('email', user.email);
           localStorage.setItem('pp', user.photo);
