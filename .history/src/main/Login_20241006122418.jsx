@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IoCar, IoCarSport, IoEyeOffSharp,IoEyeSharp, IoLogoInstagram } from 'react-icons/io5';
+import { IoBus, IoCar, IoCarSport, IoLogoInstagram } from 'react-icons/io5';
 import { Link, useNavigate } from 'react-router-dom'; // Tambahkan useNavigate
 import axios from 'axios';
 
@@ -10,7 +10,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleshow = () => {
-    setShowPassword(prevState => !prevState)
+    set
   }
   const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const Login = () => {
       let user = users.find(user => input.value === user.email && input2.value === user.password);
 
       if (user) {
-        navigate('/display'); 
+        navigate('/pts-rentCarKuu/display'); 
         localStorage.setItem('nama', user.nama);
         localStorage.setItem('email', user.email);
         localStorage.setItem('pp', user.photo);
@@ -82,20 +82,11 @@ const Login = () => {
                   className={`w-full px-4 py-2 border rounded-lg focus:outline-none input focus:ring-2 ${salah}`}
                   placeholder="Enter Your Email Address..."
                 />
-                <div className="relative w-full ">
-            <input
-                type={showPassword ? "text" : "password"} 
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
-                placeholder="Enter Your Password..."
-            />
-            <button
-                type="button"
-                onClick={handleshow}
-                className="absolute right-3 top-1/2  transform -translate-y-1/2 text-gray-500" 
-            >
-                {showPassword ? <IoEyeOffSharp size={24} /> : <IoEyeSharp size={24} />}
-            </button>
-        </div>
+                <input
+                  type="password"
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none inputT focus:ring-2 ${salah}`}
+                  placeholder="Enter Your Password..."
+                />
                 {warn && <p className="text-red-500">Data yang dimasukkan salah</p>}
                 <button
                   onClick={handleClick}

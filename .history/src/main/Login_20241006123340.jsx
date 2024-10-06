@@ -36,7 +36,7 @@ const Login = () => {
       let user = users.find(user => input.value === user.email && input2.value === user.password);
 
       if (user) {
-        navigate('/display'); 
+        navigate('/pts-rentCarKuu/display'); 
         localStorage.setItem('nama', user.nama);
         localStorage.setItem('email', user.email);
         localStorage.setItem('pp', user.photo);
@@ -91,7 +91,7 @@ const Login = () => {
             <button
                 type="button"
                 onClick={handleshow}
-                className="absolute right-3 top-1/2  transform -translate-y-1/2 text-gray-500" 
+                className="absolute right-3 top-1/2 bg-red-500 transform -translate-y-1/2 text-gray-500" 
             >
                 {showPassword ? <IoEyeOffSharp size={24} /> : <IoEyeSharp size={24} />}
             </button>
