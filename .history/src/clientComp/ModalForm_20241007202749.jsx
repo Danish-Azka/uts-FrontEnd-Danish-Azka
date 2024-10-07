@@ -26,8 +26,8 @@ const ModalForm = ({ onClose }) => {
     
     try {
       await createClient(formData); 
-      console.log('data masuk:', formData);
-      onClose(); 
+      console.log('Form submitted:', formData);
+      onClose(); // Close the form after successful submit
     } catch (err) {
       setError('Failed to submit form');
     } finally {

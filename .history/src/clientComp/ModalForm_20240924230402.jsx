@@ -1,3 +1,4 @@
+// src/components/ClientForm.js
 import React, { useState } from 'react';
 import { createClient } from '../service/apiClient';
 
@@ -25,9 +26,9 @@ const ModalForm = ({ onClose }) => {
     setError(null);
     
     try {
-      await createClient(formData); 
-      console.log('data masuk:', formData);
-      onClose(); 
+      await createClient(formData);  // Call the API service
+      console.log('Form submitted:', formData);
+      onClose(); // Close the form after successful submit
     } catch (err) {
       setError('Failed to submit form');
     } finally {
