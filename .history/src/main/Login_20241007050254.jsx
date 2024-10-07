@@ -26,8 +26,8 @@ const Login = () => {
   };
 
   const handleClick = async () => {
-    const input = document.querySelector('.inputEmail');
-    const input2 = document.querySelector('.inputPassword');
+    const input = document.querySelector('.input');
+    const input2 = document.querySelector('.inputT');
 
     try {
       const response = await getUsers();
@@ -36,7 +36,7 @@ const Login = () => {
       let user = users.find(user => input.value === user.email && input2.value === user.password);
 
       if (user) {
-        navigate('/display'); 
+        navigate('/pts-rentCarKuu/display'); 
         localStorage.setItem('nama', user.nama);
         localStorage.setItem('email', user.email);
         localStorage.setItem('pp', user.photo);
@@ -79,19 +79,19 @@ const Login = () => {
               <div className="flex flex-col gap-4">
                 <input
                   type="text"
-                  className={`w-full px-4 py-2 border inputEmail rounded-lg focus:outline-none input focus:ring-2 ${salah}`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none input focus:ring-2 ${salah}`}
                   placeholder="Enter Your Email Address..."
                 />
-                <div className="relative w-full ">
+                <div className="relative w-full bg-">
             <input
                 type={showPassword ? "text" : "password"} 
-                className="w-full px-4 py-2 border inputPassword rounded-lg focus:outline-none focus:ring-2"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
                 placeholder="Enter Your Password..."
             />
             <button
                 type="button"
                 onClick={handleshow}
-                className="absolute right-3 top-1/2  transform -translate-y-1/2 text-gray-500" 
+                className="absolute right-3 top-1/2 bg-red-500 transform -translate-y-1/2 text-gray-500" 
             >
                 {showPassword ? <IoEyeOffSharp size={24} /> : <IoEyeSharp size={24} />}
             </button>

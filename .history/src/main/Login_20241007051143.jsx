@@ -26,8 +26,8 @@ const Login = () => {
   };
 
   const handleClick = async () => {
-    const input = document.querySelector('.inputEmail');
-    const input2 = document.querySelector('.inputPassword');
+    const input = document.querySelector('.input');
+    const input2 = document.querySelector('.inputT');
 
     try {
       const response = await getUsers();
@@ -79,13 +79,13 @@ const Login = () => {
               <div className="flex flex-col gap-4">
                 <input
                   type="text"
-                  className={`w-full px-4 py-2 border inputEmail rounded-lg focus:outline-none input focus:ring-2 ${salah}`}
+                  className={`w-full px-4 py-2 border input rounded-lg focus:outline-none input focus:ring-2 ${salah}`}
                   placeholder="Enter Your Email Address..."
                 />
                 <div className="relative w-full ">
             <input
                 type={showPassword ? "text" : "password"} 
-                className="w-full px-4 py-2 border inputPassword rounded-lg focus:outline-none focus:ring-2"
+                className="w-full px-4 py-2 border inputT rounded-lg focus:outline-none focus:ring-2"
                 placeholder="Enter Your Password..."
             />
             <button

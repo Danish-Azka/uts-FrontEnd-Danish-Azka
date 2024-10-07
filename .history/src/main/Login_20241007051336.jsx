@@ -85,7 +85,7 @@ const Login = () => {
                 <div className="relative w-full ">
             <input
                 type={showPassword ? "text" : "password"} 
-                className="w-full px-4 py-2 border inputPassword rounded-lg focus:outline-none focus:ring-2"
+                className="w-full px-4 py-2 border inputpasso rounded-lg focus:outline-none focus:ring-2"
                 placeholder="Enter Your Password..."
             />
             <button

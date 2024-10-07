@@ -15,7 +15,7 @@ const App = () => {
   return (
 
     <div>
-    <BrowserRouter basename="/uts-danish-azka-FE/">
+    <BrowserRouter basename="/pts-rentCarKuu/">
 
       <Routes>
         <Route path="/" element={<Login />} />
