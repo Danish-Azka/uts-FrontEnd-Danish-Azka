@@ -21,8 +21,7 @@ const ModalEditMobil = ({ mobilId, onClose }) => {
           platNomor: karyawan.platNomor,
           kapasitasPenumpang: karyawan.kapasitasPenumpang,
           harga: karyawan.harga,
-          gambar: karyawan.gambar,
-          ClientId: karyawan.ClientId
+          gambar: ka
 
         });
       } catch (error) {

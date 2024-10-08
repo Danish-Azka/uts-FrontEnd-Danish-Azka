@@ -99,7 +99,7 @@ setIsFormVisible(false);
           <div className='flex justify-end '>
             <div className='bg-slate-600 outline outline-slate-700 outline-1 text-xs text-white px-1 py-1 rounded-lg cursor-default hover:bg-slate-800 hover:text-slate-300 mt-2'
             onClick={handleOpenForm}
-            >Add New Karyawan
+            >Add New 
             </div>
           </div>
         </div>

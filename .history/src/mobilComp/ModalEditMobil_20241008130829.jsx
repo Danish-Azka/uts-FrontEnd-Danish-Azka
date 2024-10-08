@@ -20,10 +20,7 @@ const ModalEditMobil = ({ mobilId, onClose }) => {
           model: karyawan.model,
           platNomor: karyawan.platNomor,
           kapasitasPenumpang: karyawan.kapasitasPenumpang,
-          harga: karyawan.harga,
-          gambar: karyawan.gambar,
-          ClientId: karyawan.ClientId
-
+          biayaPerhari: karyawan.biayaPerhari
         });
       } catch (error) {
         console.error('Failed to fetch karyawan data', error);

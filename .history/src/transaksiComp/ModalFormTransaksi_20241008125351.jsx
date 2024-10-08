@@ -117,7 +117,7 @@ const ModalFormTransaksi = ({ onClose }) => {
             <input
               type="text"
               name="durasiSewa"
-              value={formData.durasiSewa} 
+              value={formData.durasiSewa} // Gunakan formData.durasiSewa
               readOnly
               className="border border-gray-300 p-2 w-full"
             />

@@ -7,6 +7,7 @@ const ModalEditKaryawan = ({ karyawanId, onClose }) => {
     noKtp: ''
   });
 
+  // Fetch karyawan data when the modal is opened
   useEffect(() => {
     const fetchKaryawanData = async () => {
       try {
@@ -24,6 +25,7 @@ const ModalEditKaryawan = ({ karyawanId, onClose }) => {
     fetchKaryawanData();
   }, [karyawanId]);
 
+  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -32,11 +34,12 @@ const ModalEditKaryawan = ({ karyawanId, onClose }) => {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await editKaryawan(karyawanId, formData);
-      onClose(); 
+      onClose(); // Close the modal after successful update
     } catch (error) {
       console.error('Failed to update karyawan', error);
     }

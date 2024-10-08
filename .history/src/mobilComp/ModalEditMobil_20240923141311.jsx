@@ -11,6 +11,7 @@ const ModalEditMobil = ({ mobilId, onClose }) => {
     ClientId:''
   });
 
+  // Fetch karyawan data when the modal is opened
   useEffect(() => {
     const fetchKaryawanData = async () => {
       try {
@@ -19,11 +20,7 @@ const ModalEditMobil = ({ mobilId, onClose }) => {
           merk: karyawan.merk,
           model: karyawan.model,
           platNomor: karyawan.platNomor,
-          kapasitasPenumpang: karyawan.kapasitasPenumpang,
-          harga: karyawan.harga,
-          gambar: karyawan.gambar,
-          ClientId: karyawan.ClientId
-
+          kapasitasPenumpang: karyawan.kapasitasPenumpang
         });
       } catch (error) {
         console.error('Failed to fetch karyawan data', error);
@@ -32,6 +29,7 @@ const ModalEditMobil = ({ mobilId, onClose }) => {
     fetchKaryawanData();
   }, [mobilId]);
 
+  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -40,11 +38,12 @@ const ModalEditMobil = ({ mobilId, onClose }) => {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await editMobil(mobilId, formData);
-      onClose();
+      onClose(); // Close the modal after successful update
     } catch (error) {
       console.error('Failed to update karyawan', error);
     }

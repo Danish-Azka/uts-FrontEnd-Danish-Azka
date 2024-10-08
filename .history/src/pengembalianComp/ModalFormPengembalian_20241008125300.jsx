@@ -1,62 +1,21 @@
+// src/components/ClientForm.js
 import React, { useEffect, useState } from 'react';
-import { createTransaksi } from '../service/apiTransaksi';
-import moment from 'moment/moment';
-import { getMobilById } from '../service/apiMobil'; 
+import { createPengembalian } from '../service/apiPengembalian';
+import { getTransaksiById } from '../service/apiTransaksi';
 
-const ModalFormTransaksi = ({ onClose }) => {
+const ModalFormPengembalian = ({ onClose }) => {
   const [formData, setFormData] = useState({
-    tanggalPeminjaman: '',
+    tanggalPengembalian: '',
     batasPeminjaman: '',
-    durasiSewa: '',
-    totalBiaya: '',
+    TransaksiId: '',
     ClientId: '',
     MobilId: '',
     KaryawanId: ''
   });
-
-  const [mobilPrice, setMobilPrice] = useState(0);
-  const [selisih, setSelisih] = useState(0);
+ 
+  const [transaksiDate, setTransaksiDate] = useState(0)
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const tanggalPinjam = moment(formData.tanggalPeminjaman);
-    const tanggalKembali = moment(formData.batasPeminjaman);
-    const diffDays = tanggalKembali.diff(tanggalPinjam, 'days');
-    const validSelisih = isNaN(diffDays) || diffDays < 0 ? 0 : diffDays;
-    setSelisih(validSelisih);
-
-    setFormData((prevData) => ({
-      ...prevData,
-      durasiSewa: validSelisih
-    }));
-  }, [formData.tanggalPeminjaman, formData.batasPeminjaman]);
-
-  useEffect(() => {
-    const fetchMobilPrice = async () => {
-      if (formData.MobilId) {
-        try {
-          const response = await getMobilById(formData.MobilId); 
-          setMobilPrice(response.harga); 
-        } catch (err) {
-          console.error('Error mengambil harga mobil:', err);
-          setMobilPrice(0);
-        }
-      } else {
-        setMobilPrice(0); 
-      }
-    };
-
-    fetchMobilPrice();
-  }, [formData.MobilId]);
-
-  // total biaya
-  useEffect(() => {
-    setFormData((prevData) => ({
-      ...prevData,
-      totalBiaya: selisih * mobilPrice
-    }));
-  }, [selisih, mobilPrice]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,60 +25,86 @@ const ModalFormTransaksi = ({ onClose }) => {
     });
   };
 
+  useEffect(() => {
+    const FetchTransaksiDate = async () => {
+      if(formData.TransaksiId) {
+        try {
+          const response = await getTransaksiById(formData.TransaksiId);
+          setTransaksiDate(response.batasPeminjaman);
+        } catch (err) {
+          console.error('Error mengambil Tgl transaksi:', err);
+          setTransaksiDate(0);
+        }
+      } else {
+        setTransaksiDate(0)
+      }
+    };
+
+    FetchTransaksiDate();
+  }, [formData.TransaksiId])
+
+
+  useEffect(() => {
+    setFormData((prevData) => ({
+      ...prevData,
+      batasPeminjaman: transaksiDate
+    }));
+  }, [transaksiDate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-
+    
     try {
-      await createTransaksi(formData);  
-      console.log('Formulir dikirim:', formData);
-      onClose(); // Tutup formulir setelah berhasil dikirim
+      await createPengembalian(formData);  
+      console.log('Form submitted:', formData);
+      onClose(); // Close the form after successful submit
     } catch (err) {
-      setError('Gagal mengirim formulir');
+      setError('Failed to submit form');
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center">
       <div className="bg-white w-[400px] p-6 rounded-lg shadow-lg">
         <h2 className="text-lg font-bold mb-4">Tambah Transaksi</h2>
-
+        
         {error && <p className="text-red-500 mb-4">{error}</p>}
-
+        
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">Tanggal Peminjaman:</label>
+        <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2">TransaksiId:</label>
             <input
-              type="date"
-              name="tanggalPeminjaman"
-              value={formData.tanggalPeminjaman}
+              type="text"
+              name="TransaksiId"
+              value={formData.TransaksiId}
               onChange={(e) => handleChange(e)}
               className="border border-gray-300 p-2 w-full"
               required
             />
           </div>
-          <div className="mb-4">
+        <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2">Batas Peminjaman:</label>
             <input
               type="date"
               name="batasPeminjaman"
               value={formData.batasPeminjaman}
-              onChange={(e) => handleChange(e)}
+              readOnly
               className="border border-gray-300 p-2 w-full"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">Durasi Sewa:</label>
+            <label className="block text-gray-700 font-bold mb-2">Tanggal Pengembalian:</label>
             <input
-              type="text"
-              name="durasiSewa"
-              value={formData.durasiSewa} 
-              readOnly
+              type="date"
+              name="tanggalPengembalian"
+              value={formData.tanggalPengembalian}
+              onChange={(e) => handleChange(e)}
               className="border border-gray-300 p-2 w-full"
+              required
             />
           </div>
           <div className="mb-4">
@@ -128,17 +113,6 @@ const ModalFormTransaksi = ({ onClose }) => {
               type="text"
               name="ClientId"
               value={formData.ClientId}
-              onChange={(e) => handleChange(e)}
-              className="border border-gray-300 p-2 w-full"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">KaryawanId:</label>
-            <input
-              type="text"
-              name="KaryawanId"
-              value={formData.KaryawanId}
               onChange={(e) => handleChange(e)}
               className="border border-gray-300 p-2 w-full"
               required
@@ -156,13 +130,14 @@ const ModalFormTransaksi = ({ onClose }) => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">Total Biaya:</label>
+            <label className="block text-gray-700 font-bold mb-2">KaryawanId:</label>
             <input
               type="text"
-              name="totalBiaya"
-              value={formData.totalBiaya}
-              readOnly
+              name="KaryawanId"
+              value={formData.KaryawanId}
+              onChange={(e) => handleChange(e)}
               className="border border-gray-300 p-2 w-full"
+              required
             />
           </div>
           <div className="flex justify-end">
@@ -172,14 +147,14 @@ const ModalFormTransaksi = ({ onClose }) => {
               onClick={onClose}
               disabled={loading}
             >
-              Batal
+              Cancel
             </button>
             <button
               type="submit"
               className={`bg-blue-500 text-white px-4 py-2 rounded ${loading ? 'opacity-50' : ''}`}
               disabled={loading}
             >
-              {loading ? 'Mengirim...' : 'Kirim'}
+              {loading ? 'Submitting...' : 'Submit'}
             </button>
           </div>
         </form>
@@ -188,4 +163,4 @@ const ModalFormTransaksi = ({ onClose }) => {
   );
 };
 
-export default ModalFormTransaksi;
+export default ModalFormPengembalian;

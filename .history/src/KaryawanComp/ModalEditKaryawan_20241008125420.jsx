@@ -36,7 +36,7 @@ const ModalEditKaryawan = ({ karyawanId, onClose }) => {
     e.preventDefault();
     try {
       await editKaryawan(karyawanId, formData);
-      onClose(); 
+      onClose(); // Close the modal after successful update
     } catch (error) {
       console.error('Failed to update karyawan', error);
     }

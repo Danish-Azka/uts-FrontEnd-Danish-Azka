@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { getTransaksiById, editTransaksi } from '../service/apiTransaksi';
-const ModalEditTransaksi = ({ transaksiId, onClose }) => {
+import { getPengembalianById, editPengembalian } from '../service/apiPengembalian';
+const ModalEditReturn = ({ pengembalianId, onClose }) => {
   const [formData, setFormData] = useState({
-    tanggalPeminjaman: '',
-    batasPeminjaman: '',
-    durasiSewa: '',
-    totalBiaya:'',
-    harga:'',
+    tanggalPengembalian: '',
+    TransaksiId: '',
     ClientId:'',
     MobilId:'',
     KaryawanId:''
   });
 
+  // Fetch karyawan data when the modal is opened
   useEffect(() => {
-    const fetchTransaksiData = async () => {
+    const fetchPengembalianData = async () => {
       try {
-        const transaksi = await getTransaksiById(transaksiId);
+        const transaksi = await getPengembalianById(pengembalianId);
         setFormData({
-          tanggalPeminjaman: transaksi.tanggalPeminjaman,
-          batasPeminjaman: transaksi.batasPeminjaman,
-          durasiSewa: transaksi.durasiSewa,
-          totalBiaya: transaksi.totalBiaya,
-          harga : transaksi.harga,
+          tanggalPengembalian: transaksi.tanggalPengembalian,
+          TransaksiId: transaksi.TransaksiId,
           ClientId: transaksi.ClientId,
           MobilId: transaksi.MobilId,
           KaryawanId: transaksi.KaryawanId
@@ -30,8 +25,8 @@ const ModalEditTransaksi = ({ transaksiId, onClose }) => {
         console.error('Failed to fetch transaksi data', error);
       }
     };
-    fetchTransaksiData();
-  }, [transaksiId]);
+    fetchPengembalianData();
+  }, [pengembalianId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,14 +36,14 @@ const ModalEditTransaksi = ({ transaksiId, onClose }) => {
     });
   };
 
-  
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await editTransaksi(transaksiId, formData);
+      await editPengembalian(pengembalianId, formData);
       onClose(); 
     } catch (error) {
-      console.error('Failed to update transaksi', error);
+      console.error('Failed to update pengembalian', error);
     }
   };
 
@@ -58,41 +53,21 @@ const ModalEditTransaksi = ({ transaksiId, onClose }) => {
         <h2 className="text-lg font-bold mb-4 text-blue-600">Edit Transaksi</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700">Tanggal Peminjaman</label>
+            <label className="block text-gray-700">Tanggal Pengembalian</label>
             <input
               type="text"
-              name="tanggalPeminjaman"
-              value={formData.tanggalPeminjaman}
+              name="tanggalPengembalian"
+              value={formData.tanggalPengembalian}
               onChange={handleChange}
               className="border w-full p-2 mt-1"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Batas Peminjaman</label>
+            <label className="block text-gray-700">TransaksiId</label>
             <input
               type="text"
-              name="batasPeminjaman"
-              value={formData.batasPeminjaman}
-              onChange={handleChange}
-              className="border w-full p-2 mt-1"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Durasi Sewa</label>
-            <input
-              type="text"
-              name="durasiSewa"
-              value={formData.durasiSewa}
-              onChange={handleChange}
-              className="border w-full p-2 mt-1"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Total Biaya</label>
-            <input
-              type="text"
-              name="totalBiaya"
-              value={formData.totalBiaya}
+              name="TransaksiId"
+              value={formData.TransaksiId}
               onChange={handleChange}
               className="border w-full p-2 mt-1"
             />
@@ -147,4 +122,4 @@ const ModalEditTransaksi = ({ transaksiId, onClose }) => {
   );
 };
 
-export default ModalEditTransaksi;
+export default ModalEditReturn;
