@@ -30,7 +30,7 @@ const ModalFormCar = ({ onClose }) => {
     try {
       await createMobil(formData); 
       console.log('Form submitted:', formData);
-      onClose(); 
+      onClose(); // Close the form after successful submit
     } catch (err) {
       setError('Failed to submit form');
     } finally {

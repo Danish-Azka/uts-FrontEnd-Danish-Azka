@@ -28,9 +28,9 @@ const ModalFormCar = ({ onClose }) => {
     setError(null);
     
     try {
-      await createMobil(formData); 
+      await createMobil(formData);  // Call the API service
       console.log('Form submitted:', formData);
-      onClose(); 
+      onClose(); // Close the form after successful submit
     } catch (err) {
       setError('Failed to submit form');
     } finally {
