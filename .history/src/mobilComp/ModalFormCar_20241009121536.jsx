@@ -40,7 +40,7 @@ const ModalFormCar = ({ onClose }) => {
   return (
     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center">
       <div className="bg-white  w-[400px] p-6 rounded-lg shadow-lg">
-        <h2 className="text-lg font-bold mb-4">Tambah Mobil</h2>
+        <h2 className="text-lg font-bold mb-4">Tambah </h2>
         
         {error && <p className="text-red-500 mb-4">{error}</p>}
         
