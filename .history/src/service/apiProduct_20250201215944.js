@@ -1,0 +1,54 @@
+
+import axios from 'axios';
+
+export const getproduct = async () => {
+  try {
+    const response = await axios.get('http://localhost:3009/product/get');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return [];
+  }
+};
+
+const API_URL = 'http://localhost:3009/product/post';
+
+export const createproduct = async (productData) => {
+  try {
+    const response = await axios.post(API_URL, productData);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating product:', error);
+    throw error;    
+  }
+};
+
+export const deleteproduct = async (id) => {
+  try {
+    const response = await axios.delete(`http://localhost:3009/product/delete/${id}`);
+      return response.data
+  } catch (error){
+    console.error("error deleting product", error);
+    throw(error);
+  }
+};
+
+export const getproductById = async (id) => {
+  try {
+    const response = await axios.get(`http://localhost:3009/product/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    throw error;
+  }
+};
+
+export const editproduct = async (id, updatedData) => {
+  try {
+    const response = await axios.put(`http://localhost:3009/product/update/${id}`, updatedData);
+    return response.data;
+  } catch (error) {
+    console.error("Error updating product:", error);
+    throw error;
+  }
+};
