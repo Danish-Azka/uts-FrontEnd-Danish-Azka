@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/uts-FrontEnd-Danish-Azka/static/css/main.421459eb.css",
-    "main.js": "/uts-FrontEnd-Danish-Azka/static/js/main.242f282e.js",
+    "main.css": "/uts-FrontEnd-Danish-Azka/static/css/main.ab6df088.css",
+    "main.js": "/uts-FrontEnd-Danish-Azka/static/js/main.47b3c75b.js",
     "static/js/453.dc3a25b7.chunk.js": "/uts-FrontEnd-Danish-Azka/static/js/453.dc3a25b7.chunk.js",
     "static/media/Ash.jpg": "/uts-FrontEnd-Danish-Azka/static/media/Ash.3de31f20450642f33f56.jpg",
     "static/media/bg.png": "/uts-FrontEnd-Danish-Azka/static/media/bg.f1159c68ab7daaadabf9.png",
@@ -11,12 +11,12 @@
     "static/media/velg.jpeg": "/uts-FrontEnd-Danish-Azka/static/media/velg.f46d2c386f7a2e523be6.jpeg",
     "static/media/gu.jpeg": "/uts-FrontEnd-Danish-Azka/static/media/gu.bea9a3b622fe579e9eb9.jpeg",
     "index.html": "/uts-FrontEnd-Danish-Azka/index.html",
-    "main.421459eb.css.map": "/uts-FrontEnd-Danish-Azka/static/css/main.421459eb.css.map",
-    "main.242f282e.js.map": "/uts-FrontEnd-Danish-Azka/static/js/main.242f282e.js.map",
+    "main.ab6df088.css.map": "/uts-FrontEnd-Danish-Azka/static/css/main.ab6df088.css.map",
+    "main.47b3c75b.js.map": "/uts-FrontEnd-Danish-Azka/static/js/main.47b3c75b.js.map",
     "453.dc3a25b7.chunk.js.map": "/uts-FrontEnd-Danish-Azka/static/js/453.dc3a25b7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.421459eb.css",
-    "static/js/main.242f282e.js"
+    "static/css/main.ab6df088.css",
+    "static/js/main.47b3c75b.js"
   ]
 }
