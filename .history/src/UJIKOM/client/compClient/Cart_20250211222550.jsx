@@ -1,0 +1,82 @@
+import React, { useEffect, useState } from 'react';
+import { XCircle, Trash2Icon } from "lucide-react";
+import { getCartByBuyerId, deleteCart } from '../../../service/apiCart';
+
+const Cart = ({ isOpen, onClose }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
+  const fetchCart = async () => {
+    try {
+      const carts = await getCartByBuyerId();
+      setData(carts);
+    } catch (error) {
+      console.error('Error fetching cart', error);
+    }
+  };
+
+  const handleDelete = async (cartId) => {
+    try {
+      await deleteCart(cartId); // Hapus dari API
+      setData(data.filter(item => item.id !== cartId)); // Perbarui state
+    } catch (error) {
+      console.error('Gagal menghapus item', error);
+    }
+  };
+
+  if (!isOpen) return null;
+  
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-slate-300 rounded-lg h-[600px] w-[700px] shadow-lg">
+        <div className="flex justify-between h-2/6 p-5 bg-black rounded-t-lg items-center border-b pb-2 mb-3">
+          <h2 className="text-xl font-bold text-white">Keranjang</h2>
+          <button onClick={onClose}>
+            <XCircle size={24} className="text-red-500" />
+          </button>
+        </div>
+
+        <div className='flex flex-col gap-3 p-5'>
+          {data.length > 0 ? (
+            data.map((item, index) => (
+              <div key={index} className='h-[250px] bg-white w-full flex flex-col'>
+                <div className='flex justify-between w-full h-15 gap-5 items-center p-3'>
+                  <div className='flex gap-3 justify-start items-center'>
+                    <img className='w-10 h-10 rounded-full border border-black' src={item.Shop?.gambar} alt="" />
+                    <p>{item.Shop?.nama}</p> 
+                  </div>
+                  <div className='items-end'>
+                    <button onClick={() => handleDelete(item.id)}>
+                      <Trash2Icon className="text-red-500 cursor-pointer" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className='flex flex-row gap-2 p-3'>
+                  <div className='w-1/3'>
+                    <img className="w-full h-5/6 bg-yellow-500" src={item.Product?.gambar} alt="" />
+                  </div>
+                  <div className='w-2/3 h-5/6 flex justify-start items-center'>
+                    <div>
+                      <p className='text-xl'>{item.Product?.nama}</p>
+                      <p className='text-xs font-extralight bg-slate-400 p-1 rounded-xl'>{item.Product?.category}</p>
+                      <p>QTY : {item.jumlah}</p>
+                      <p>IDR : {item.Totalharga.toLocaleString()}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>        
+            ))
+          ) : (
+            <p className="text-center text-gray-600">Keranjang kosong</p>
+          )}
+        </div>
+      </div>
+    </div>  
+  );
+};
+
+export default Cart;
