@@ -1,4 +1,5 @@
 # CARA MENGGUNAKAN PROJEK BERIKUT 
+JANGAN LUPA UNTUK CLONE REPOSITORY YANG BERNAMA TUGASSEQUELIZE UNTUK MENDAPATKAN CODE BACKEND 
 1. diawal ada sebuah form untuk pengisian login, jika belum memiliki akun yang terdaftar klik tulisan "no have account? sign up"
 2.isi semua form yg ada dan isi bagian form photo dengan link dari sebuah gambar
 3. jika sudah memiliki akun maka isi form login 
